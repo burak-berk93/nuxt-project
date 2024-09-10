@@ -1,10 +1,14 @@
 export default defineNuxtConfig({
-  compatibilityDate: '2024-04-03',
-  devtools: { enabled: true },
   css: [
-    '~/assets/css/main.css'  // CSS dosyasının doğru yoldan çağrıldığından emin olun
+    '~/assets/css/main.css'
   ],
-  plugins: [
-    '~/plugins/global-components.ts'  // Plugin dosyalarının doğru yoldan çağrıldığından emin olun
-  ]
+  buildModules: [
+    '@nuxt/postcss8',  // Ensure this module is included
+  ],
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
 })

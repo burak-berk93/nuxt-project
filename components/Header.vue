@@ -1,44 +1,44 @@
 <template>
-  <header>
-    <h1>{{ title }}</h1>
-    <!--
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
-<div class="p-4 bg-gray-100">
-    <h1 class="text-4xl font-bold text-center text-blue-600 bg-black">Welcome to My Nuxt App</h1>
-    <p class="mt-4 text-lg text-gray-700">TailwindCSS is working!</p>
-  </div>
+  <div>
+    <!-- Menü Butonu -->
+    <button @click="toggleMenu" class="p-2 bg-blue-500 text-white rounded">
+      Menü Aç/Kapat
+    </button>
 
-  </header>
+    <!-- Menü -->
+    <div :class="['fixed top-0 left-0 h-full bg-gray-800 text-white transform transition-transform', { 'menu-visible': isMenuOpen, 'menu-hidden': !isMenuOpen }]" class="menu-transition w-64">
+      <button @click="toggleMenu" class="p-2 bg-red-500 rounded">
+        Kapat
+      </button>
+      <nav>
+        <ul>
+          <li><a href="#" class="block p-2">Ana Sayfa</a></li>
+          <li><a href="#" class="block p-2">Hakkımızda</a></li>
+          <li><a href="#" class="block p-2">İletişim</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 </template>
 
 <script setup>
-const props = defineProps({
-  title: {
-    type: String,
-    default: 'My Nuxt.js App'
-  }
-})
+import { ref } from 'vue'
+
+const isMenuOpen = ref(false)
+
+function toggleMenu() {
+  isMenuOpen.value = !isMenuOpen.value
+}
 </script>
 
 <style scoped>
-header {
-  padding: 20px;
-  background-color: #f8f9fa;
-  text-align: center;
+.menu-hidden {
+  transform: translateX(-100%);
+}
+.menu-visible {
+  transform: translateX(0);
+}
+.menu-transition {
+  transition: transform 0.3s ease;
 }
 </style>
-
-
-
