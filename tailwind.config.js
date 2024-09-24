@@ -5,7 +5,12 @@ module.exports = {
     './layouts/**/*.{js,ts,vue}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Nunito', 'Arial', 'sans-serif'],
+        // diğer font ailelerini buraya ekleyebilirsiniz
+      },
+    },
   },
   plugins: [],
 }

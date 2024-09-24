@@ -6,20 +6,34 @@
   >
     <h2 class="text-lg font-bold mb-4">Menu</h2>
     <ul>
-      <li class="py-2 border-b border-gray-300">Item 1</li>
+      <li class="py-2 border-b border-gray-300">Item 1-{{ title }}</li>
       <li class="py-2 border-b border-gray-300">Item 2</li>
       <li class="py-2 border-b border-gray-300">Item 3</li>
       <li class="py-2 border-b border-gray-300">Item 4</li>
     </ul>
-   
   </div>
   
 </template>
 
 <script setup>
 
-import { ref } from 'vue'
+import { ref, defineProps } from 'vue'
 const isRightClicked = ref(false)
+const props = defineProps({
+  name: {
+    type: String,
+    required: true
+  },
+  age: {
+    type: Number,
+    default: 18
+  },
+  isActive: {
+    type: Boolean,
+    default: false
+  }
+});
+
 const onRightClick = () => {
   isRightClicked.value = !isRightClicked.value // True/False arasında geçiş yapar
   console.log(isRightClicked.value)
