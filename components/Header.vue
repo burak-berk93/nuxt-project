@@ -50,7 +50,7 @@
 
             <!-- Açılır Menü -->
             <ul v-if="subMenuOpen === 'about'" class="ml-8 space-y-2">
-              <li><a href="#" class="block p-2 text-gray-400 hover:text-blue-500">Heading</a></li>
+              <li ><a href="#" class="block p-2 text-gray-400 hover:text-blue-500">Heading</a></li>
               <li><a href="#" class="block p-2 text-gray-400 hover:text-blue-500">Full Name</a></li>
             </ul>
           </li>

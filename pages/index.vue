@@ -1,27 +1,35 @@
 <template>
   <div>
-    <Header title="Welcome to My Nuxt.js App" />
-    <Button 
-    :name="'Ahmet'" 
-      :age="30" 
-      :isActive="true" 
-    title="Welcome to My Nuxt.js App" type="primary">Click Me!</Button>
+    <!-- Bileşen Seçim Formu -->
+    <div>
+      <button @click="addComponent('Header')">Add Header</button>
+      <button @click="addComponent('Button')">Add Button</button>
+    </div>
 
+    <!-- Dinamik Bileşenler Render Ediliyor -->
+    <div v-for="(component, index) in components" :key="index">
+      <component :is="component" />
+    </div>
 
+    <div>
+      <p>Store'dan gelen mesaj: {{ store.message }}</p>
+      <input v-model="newMessage" placeholder="Yeni mesaj gir" />
+      <button @click="store.updateMessage(newMessage)">Mesajı Güncelle</button>
+    </div>
   </div>
-
 </template>
 
 <script setup>
-import Header from '~/components/Header.vue'
-import Button from '~/components/Button.vue'
+import { ref } from 'vue';
+import { useMainStore } from '~/stores/main.js';
 
-// Üst bileşen veri
-const parentMessage = ref("Merhaba Vue!");
+// Store'u çağır
+const store = useMainStore();
+const newMessage = ref('');
+const components = store.components;
 
-// Alt bileşenden gelen olayı yakalayan fonksiyon
-const handleMessageChange = (newMessage) => {
-  parentMessage.value = newMessage;
+const addComponent = (componentType) => {
+  store.addComponent(componentType);
 };
 </script>
 
